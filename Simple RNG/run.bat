@@ -25,6 +25,9 @@ set /p M=
 set /p N=
 
 set /A rand=(%RANDOM% * (%N% - %M% + 1) / 32768 + %M%)
+rem %random% will produce random number you like. Everytime you execute this file the result will be totally differnet.
+:: maximum range is 0 ~ 32767, but we can define the range of the randomness here.
+:: sadly, the %random% works in batch is just running the numbers fast enough to random pick a number, so the first picked random number must be < than second if both executed at the same time.
 :: formula: %RANDOM% * (%maxval% - %minval% + 1) / 32768 + %minval%
 :: decimals not supported
 

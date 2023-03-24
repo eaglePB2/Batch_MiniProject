@@ -1,5 +1,5 @@
 echo off
-title Unlimited number getting system
+title Simple RNG
 color 0a
 
 cls
@@ -10,8 +10,8 @@ echo =.=
 set /p menu="Do you want to proceed? (Y/N):"
 if %menu%==Y goto Yes
 if %menu%==y goto Yes
-if %menu%==N exit
-if %menu%==n exit
+if %menu%==N goto TY
+if %menu%==n goto TY
 cls
 echo =.=
 echo Incorrect input, pls try again.
@@ -20,7 +20,15 @@ goto A
 :Yes
 cls
 echo =.=
-set /p pause="your number is %random%"
+echo please select minimum range and maximum range for randomness.
+set /p M=
+set /p N=
+
+set /A rand=(%RANDOM% * (%N% - %M% + 1) / 32768 + %M%)
+:: formula: %RANDOM% * (%maxval% - %minval% + 1) / 32768 + %minval%
+:: decimals not supported
+
+set /p pause="your number is %rand%"
 
 :Cfm
 set /p menu2="Do you want to change the current number? (Y/N):"
@@ -36,4 +44,3 @@ goto Cfm
 echo =.=
 set /p pause="Thank you for using the system. You may quit now."
 exit
-
